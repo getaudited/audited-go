@@ -1,0 +1,24 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    environment:
+      - CLICKHOUSE_PASSWORD=password
+    ports:
+      - "9000:9000"
+      - "8123:8123"
+
+  audited:
+    image: getauditeddev/audited:0.0.1-alpha.3
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      ADT_CLICKHOUSE_HOSTS: "clickhouse:9000"
+      ADT_CLICKHOUSE_DBNAME: "default"
+      ADT_CLICKHOUSE_USERNAME: "default"
+      ADT_CLICKHOUSE_PASSWORD: "password"
+      ADT_HTTP_PORT: "8080"
+      ADT_JWT_PUBLIC_KEY: -----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE9O1X2qEISppTiZoGm1sDLgTqfIgo\nGEPcQ1R+8L7D5e1reOvyKYGqSnEnq92dF61rK2G7MyAunwjyRYTmN0+mHw==\n-----END PUBLIC KEY-----
+      ADT_JWT_PRIVATE_KEY: -----BEGIN PRIVATE KEY-----\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgx5srcR5QZFDtLc4LdiH+XXbsg4ULgtF3pyOq9UjysfShRANCAAT07VfaoQhKmlOJmgabWwMuBOp8iCgYQ9xDVH7wvsPl7Wt46/IpgapKcSer3Z0XrWsrYbszIC6fCPJFhOY3T6Yf\n-----END PRIVATE KEY-----
+      ADT_ADMIN_EMAIL: "admin@example.com"
+      ADT_ADMIN_PASSWORD: "changeme"
