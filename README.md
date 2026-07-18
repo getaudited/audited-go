@@ -21,7 +21,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/getaudited/audited"
+	
 	"github.com/getaudited/audited/v1"
 )
 
