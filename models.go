@@ -30,7 +30,7 @@ type Context struct {
 
 // Target It represents an event target.
 type Target struct {
-	Id       string                  `json:"id"`
+	ID       string                  `json:"id"`
 	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 	Name     *string                 `json:"name,omitempty"`
 	Type     string                  `json:"type"`
