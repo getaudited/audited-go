@@ -9,9 +9,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/getaudited/audited-go"
 	"github.com/stretchr/testify/require"
-
-	"github.com/getaudited/audited"
 )
 
 func TestNewClient(t *testing.T) {

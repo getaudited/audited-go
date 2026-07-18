@@ -1,4 +1,4 @@
-module github.com/getaudited/audited
+module github.com/getaudited/audited-go
 
 go 1.26
 
