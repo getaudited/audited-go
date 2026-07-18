@@ -10,7 +10,7 @@
 To install the Go SDK, simply execute the following command on a terminal:
 
 ```sh 
-go get github.com/getaudited/audited-go/v1
+go get github.com/getaudited/audited-go
 ```
 
 ## Usage
@@ -22,14 +22,17 @@ import (
 	"context"
 	"fmt"
 	
-	"github.com/getaudited/audited/v1"
+	"github.com/getaudited/audited-go"
 )
 
 func main() {
-	client := audited.NewClient(audited.Config{
+	client, err := audited.NewClient(audited.Config{
 		BaseAPI: "https://audited.yourinstance.com",
 		APIToken: "secure-api-token",
     })
+	if err != nil {
+        panic(err)
+    }
 
 	event := audited.Event{
 		Action: "transfer.initiated",
@@ -69,10 +72,9 @@ func main() {
 		OccurredAt: time.Now(),
 	}
 
-	err := client.CreateEvent(context.Background(), event)
+	err = client.CreateEvent(context.Background(), event)
 	if err != nil {
-		fmt.Printf("Error creating event: %v\n", err)
-		return
+		panic(err)
 	}
 	
 	fmt.Println("Event created successfully")
