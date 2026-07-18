@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/getaudited/audited-go"
@@ -25,11 +26,16 @@ func run() error {
 	return nil
 }
 
-func login() (string, error) {
+type AdminClient struct {
+	httpClient *http.Client
+	baseAPI    string
+}
+
+func login(ctx context.Context, email, password string) (string, error) {
 	return "", nil
 }
 
-func createSource() {}
+func createSource(ctx context.Context, name string) error {}
 
 func main() {
 	err := run()
